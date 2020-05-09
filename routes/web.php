@@ -19,6 +19,11 @@ Route::get('/', function () {
 });
 
 //Route::get('/home', 'StudentController@index');
+
+
+
+
+Auth::routes();
 Route::get('/create', 'StudentController@create')->name('create');
 Route::post('/create', 'StudentController@store')->name('store');
 
@@ -26,18 +31,13 @@ Route::get('/edit/{id}', 'StudentController@edit')->name('edit');
 Route::post('/update/{id}', 'StudentController@update')->name('update');
 
 Route::delete('/delete/{id}','StudentController@delete')->name('delete');
-Route::get('/info', 'StudentController@index')->name('info');
-
-
-
-Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
 
 Route::get('/change-password', 'Auth\ChangePasswordController@index')->name('password.change');
 Route::post('/change-password', 'Auth\ChangePasswordController@changepassword')->name('password.update');
 
-
+Route::get('/info', 'StudentController@index')->name('info');
 
 Route::group(['as'=>'admin.', 'prefix'=>'admin', 'namespace'=>'Admin', 'middleware'=>['auth', 'admin']],
     function (){
